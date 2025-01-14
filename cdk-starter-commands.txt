@@ -3,3 +3,25 @@ mkdir cdk-starter
 cd ckd-starter
 cdk init
 cdk init --language=typescript
+
+
+####    In order to deploy the stack    ####
+*   check the aws cli is installed in your system, execute the below command :
+        aws s3 ls
+*   execute the below command in order to bootstrap the cdk environment.
+        cdk bootstrap
+    Check the aws account from the console inside the cloudformation and you will see the stack available their.
+    We are now ready to deploy our initial project
+*   Execute the beow command to deploy the cdk project and check the aws cloudformation in console :
+        cdk deploy
+    We can also verify the created stack with below commands in terminal :
+        aws cloudformation describe-stacks --stack-name CdkStarterStack
+    Make sure that if you are navigating the aws console in order to see the stack deployed, login with the same account from which you have created the stack with cli.
+    
+*   Everytime we execute "cdk deploy" command, it will create a cdk.out folder inside our project which is git ignored and it will deploy the things in the cloudformation stack whichever is there inside the template file inside this cdk.out folder
+
+*   If we don't want to deploy anything and just wanted to know that our template file is valid or not, then execute the below command after deleting the cdk.out folder
+        cdk synth
+    It will create ckd.out directory and template file inside that. We can verify if that template file is valid or not.
+
+*   Now we are ready to add some aws resources and deploy them using cdk.
