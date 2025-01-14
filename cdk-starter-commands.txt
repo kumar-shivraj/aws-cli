@@ -1,0 +1,5 @@
+# run below commands to start a fresh cdk project
+mkdir cdk-starter
+cd ckd-starter
+cdk init
+cdk init --language=typescript
