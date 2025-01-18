@@ -45,6 +45,7 @@ export class CdkStarterStack extends cdk.Stack {
     });
 
     // L3 Construct
-    new L3Bucket(this, "MyL3Bucket", 3);
+    // new L3Bucket(this, "MyL3Bucket", 3);
+    new L3Bucket(this, "MyL3Bucket", 5);
   }
 }

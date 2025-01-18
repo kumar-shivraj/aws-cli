@@ -4,3 +4,4 @@ import { CdkStarterStack } from "../lib/cdk-starter-stack";
 
 const app = new cdk.App();
 new CdkStarterStack(app, "CdkStarterStack");
+// new CdkStarterStack(app, "CdkStarterStack2");

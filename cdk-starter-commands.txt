@@ -51,3 +51,46 @@ In essence, constructs enable developers to build cloud infrastructure declarati
     *   L1 : Low level constructs
     *   aws resources with high level : used most of the time
     *   Patterns : combine multiple types of resources and help with common tasks in aws
+====================================================================================================================================================================================================================================================================================
+****    aws cdk commands   ****
+
+use below commands to initialize the app as we did it earlier(cdk init --language=typescript) :
+
+cdk init --language=typescript
+cdk init app --language=typescript
+cdk init lib --language=typescript
+cdk init sample-app --language=typescript
+
+* app: Template for a CDK Application
+   └─ cdk init app --language=typescript
+* lib: Template for a CDK Construct Library
+   └─ cdk init lib --language=typescript
+* sample-app: Example CDK Application with some constructs
+   └─ cdk init sample-app --language=typescript
+
+# To deploy a stack, use the following command:
+# If you have only one stack, you can deploy it with:
+    cdk deploy
+# For multiple stacks, specify the stack name to deploy a specific stack:
+    cdk deploy stack_name
+
+# To list all stacks in the app:
+    cdk list
+    cdk ls
+
+# To compare the deployed stack with the local version and see differences:
+    cdk diff
+
+# To diagnose issues in the CDK environment and setup, use the doctor command:
+    cdk doctor
+
+# To delete a specific stack:
+    cdk destroy CdkStarterStack
+# To clean up all resources and remove all stacks:
+    cdk destroy
+
+# To display metadata about the stack, including resource information:
+    cdk metadata
+
+# To manage context values for your app, use the context command:
+    cdk context
