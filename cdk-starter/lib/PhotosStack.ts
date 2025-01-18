@@ -1,7 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import { Bucket, CfnBucket } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
-import { Fn } from "aws-cdk-lib";
+import { Fn, CfnOutput } from "aws-cdk-lib";
 
 export class PhotosStack extends cdk.Stack {
   private stackSuffix: string;
@@ -40,8 +40,17 @@ export class PhotosStack extends cdk.Stack {
     //   "PhotoBucketOverride123"
     // );
 
-    new Bucket(this, "PhotoBucket-changed", {
+    // new Bucket(this, "PhotoBucket-changed", {
+    //   bucketName: `photos-bucket-shivraj-${this.stackSuffix}`,
+    // });
+
+    const photosBucket = new Bucket(this, "PhotoBucket-changed", {
       bucketName: `photos-bucket-shivraj-${this.stackSuffix}`,
+    });
+
+    new CfnOutput(this, "photos-bucket-shivraj", {
+      value: photosBucket.bucketArn,
+      exportName: "photos-bucket-shivraj",
     });
   }
 
