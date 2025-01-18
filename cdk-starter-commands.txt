@@ -17,6 +17,8 @@ cdk init --language=typescript
     We can also verify the created stack with below commands in terminal :
         aws cloudformation describe-stacks --stack-name CdkStarterStack
     Make sure that if you are navigating the aws console in order to see the stack deployed, login with the same account from which you have created the stack with cli.
+    To find out which user is associated with the current AWS CLI credentials, use the following command:
+        aws sts get-caller-identity
     
 *   Everytime we execute "cdk deploy" command, it will create a cdk.out folder inside our project which is git ignored and it will deploy the things in the cloudformation stack whichever is there inside the template file inside this cdk.out folder
 
@@ -25,3 +27,24 @@ cdk init --language=typescript
     It will create ckd.out directory and template file inside that. We can verify if that template file is valid or not.
 
 *   Now we are ready to add some aws resources and deploy them using cdk.
+
+====================================================================================================================================================================================================================================================================================
+
+****    aws cdk construct   ****
+AWS CDK (Cloud Development Kit) constructs are the building blocks of the AWS CDK framework, which helps developers define cloud infrastructure using familiar programming languages like TypeScript, Python, Java, and C#. A **construct** is a reusable, modular component that encapsulates AWS resources and configurations, enabling you to model and provision cloud resources.
+
+### Key Points about AWS CDK Constructs:
+1. **Constructs** are the fundamental units in the AWS CDK that represent AWS services or configurations.
+2. They are organized into **three levels**:
+   - **Level 1 (L1)**: Low-level constructs that directly map to CloudFormation resources (e.g., `CfnBucket` for an S3 bucket).
+   - **Level 2 (L2)**: High-level constructs that simplify usage and abstract the details of L1 constructs (e.g., `Bucket` for an S3 bucket, which wraps `CfnBucket`).
+   - **Level 3 (L3)**: Abstract constructs that provide complex, opinionated patterns for common use cases (e.g., `ApplicationLoadBalancer` or `S3BucketDeployment`).
+3. **Constructs** can be composed into **stacks**, which represent the collection of resources that AWS CloudFormation manages.
+4. They can be combined and reused to create cloud infrastructure patterns that are scalable and maintainable.
+
+In essence, constructs enable developers to build cloud infrastructure declaratively and programmatically, leveraging AWS services in an intuitive and flexible manner.
+
+3 Levels of CDK Constructs :
+    *   L1 : Low level constructs
+    *   aws resources with high level : used most of the time
+    *   Patterns : combine multiple types of resources and help with common tasks in aws
