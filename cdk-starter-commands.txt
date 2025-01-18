@@ -27,6 +27,9 @@ cdk init --language=typescript
     It will create ckd.out directory and template file inside that. We can verify if that template file is valid or not.
 
 *   Now we are ready to add some aws resources and deploy them using cdk.
+    if we are adding any resource then execute below command in order to deploy it :
+        cdk synth
+        cdk deploy
 
 ====================================================================================================================================================================================================================================================================================
 
