@@ -1,10 +1,14 @@
 import * as cdk from "aws-cdk-lib";
 import { Bucket, CfnBucket } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
+import { Fn } from "aws-cdk-lib";
 
 export class PhotosStack extends cdk.Stack {
+  private stackSuffix: string;
+
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+    this.initializeSuffix();
 
     // new Bucket(this, "PhotoBucket");
 
@@ -29,11 +33,46 @@ export class PhotosStack extends cdk.Stack {
     // aws cloudformation delete-stack --stack-name PhotosStack
 
     // manually give the logical id for the resource ourself
-    const myBucket = new Bucket(this, "PhotoBucket-changed", {
-      bucketName: "photos-bucket-shivraj-1",
+    // const myBucket = new Bucket(this, "PhotoBucket-changed", {
+    //   bucketName: "photos-bucket-shivraj-1",
+    // });
+    // (myBucket.node.defaultChild as CfnBucket).overrideLogicalId(
+    //   "PhotoBucketOverride123"
+    // );
+
+    new Bucket(this, "PhotoBucket-changed", {
+      bucketName: `photos-bucket-shivraj-${this.stackSuffix}`,
     });
-    (myBucket.node.defaultChild as CfnBucket).overrideLogicalId(
-      "PhotoBucketOverride123"
-    );
+  }
+
+  private initializeSuffix() {
+    // When we use `Fn.select` on a `Fn.split` expression, AWS CDK will generate a CloudFormation
+    // `Select` expression with the index of the element we want to select.
+    //
+    // The `stackId` property returns a string that looks like this:
+    //   "arn:aws:cloudformation:REGION:ACCOUNT-ID:stack/
+    //   "arn:aws:cloudformation:ap-south-1:433364472722:stack/PhotosStack/d7576e30-d561-11ef-84dd-0a157fbb039d"
+    //
+    // We use `Fn.split` to split the `stackId` string on the "/" character, which gives us an
+    // array of strings like this:
+    //   ["arn:aws:cloudformation:REGION:ACCOUNT-ID:stack", "PhotosStack", "STACK-ID"]
+    //
+    // We then use `Fn.select` to select the third element of the array (index 2), which is the
+    // stack name.
+    //
+    // The resulting string is like "PhotosStack-STACK-ID".
+    //
+    //
+    // We then split this string on the "-" character, which gives us an array of strings like
+    // this:
+    //   ["PhotosStack", "STACK-ID"]
+    //
+    // We then use `Fn.select` to select the second element of the array (index 4), which is the
+    // stack ID.
+    //
+    // The resulting string is like "STACK-ID".
+    //  =>  =>  "0a157fbb039d"
+    const shortStackId = Fn.select(2, Fn.split("/", this.stackId));
+    this.stackSuffix = Fn.select(4, Fn.split("-", shortStackId));
   }
 }
