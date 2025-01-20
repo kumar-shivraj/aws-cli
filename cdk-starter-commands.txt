@@ -94,3 +94,10 @@ cdk init sample-app --language=typescript
 
 # To manage context values for your app, use the context command:
     cdk context
+
+====================================================================================================================================================================================================================================================================================
+
+CDK aspects: check or modify resources after they were created
+ - visitor pattern
+ - simple usecase: add tags
+ - popular usecase: enforce security or best practice (like a code linter)
