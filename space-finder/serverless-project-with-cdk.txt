@@ -1,0 +1,33 @@
+To better understand how cdk works, in this section, we will create our own cdk project from scratch.
+
+We won't use the cdk command line interface to create a project, instead we'll create it from scratch ourself and this way we will be having full control over application .
+
+
+Initialize CDK project from scratch:
+ - create folder
+        mkdir space-finder
+        cd space-finder
+ - npm init -y
+ - install dependencies
+        npm i -D aws-cdk aws-cdk-lib constructs typescript ts-node @types/node
+ - create .gitignore file and put node_modules inside that
+        touch .gitignore
+        # put below entr in .gitignore file :
+            node_modules/
+            cdk.out/
+ - create the tsconfig file :
+       touch tsconfig.json
+    - add the compiler option in this tsconfig file
+ - create Launcher.ts file
+       mkdir src
+       cd src
+       mkdir infra
+       cd infra
+       touch Launcher.ts
+       mkdir stacks
+       cd stacks
+       touch DataStack.ts
+ - create empty stack
+ - create cdk.json file
+       inside space-finder directory, execute below command
+              touch cdk.json
